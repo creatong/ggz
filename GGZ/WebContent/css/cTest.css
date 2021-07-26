@@ -1,0 +1,47 @@
+
+.contents{
+	margin-top: 140px;
+	height:800px;
+}
+
+.question {
+	background-color: #FFCE3D;
+    text-align: center;
+    padding: 20px;
+    margin:auto;
+    margin-top:50px;
+    border: 2px solid #FCC360;
+    border-radius:  10px;
+    width:400px;
+    height:300px;
+}
+.question p{
+	text-align:center;
+    margin:auto;
+	color: #333;
+	font-size: 35px;
+    font-family: 'Do Hyeon', sans-serif;
+}
+.question img {
+    margin-top:20px;
+}
+.choices{
+    width:100%;
+    margin:auto;
+    text-align:center;
+}
+.choices p{
+	font-size:25px;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+.choices .input{
+	width: 300px;
+    padding: 15px;
+    border:1px solid  #FCC360;
+    border-radius:  4px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 12px;
+    background-color: #FFCE3D;
+}

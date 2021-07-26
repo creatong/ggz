@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <properties resource="ggz/mybatis/db.properties"/>
+  <!-- vo클래스에 대한 alias 별칭 -->
+  <typeAliases> 
+  	<typeAlias type="ggz.vo.Mall" alias="Mall" />
+  	<typeAlias type="ggz.vo.OrderList" alias="OrderList" />
+  	<typeAlias type="ggz.vo.Member" alias="Member" />
+  	<typeAlias type="ggz.vo.Freeboard" alias="Freeboard" />
+  	<typeAlias type="ggz.vo.Comment" alias="Comment" />
+  	<typeAlias type="ggz.vo.Ctest" alias="Ctest" />
+  	<typeAlias type="ggz.vo.Mtest" alias="Mtest" />
+  	<typeAlias type="ggz.vo.Param" alias="Param" />
+  </typeAliases> 	
+  <!--  db 연결정보 -->
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <!-- 데이터베이스 연결 풀 설정 -->
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <!-- JDBC로 처리하는 상당부분의 코드와 파라미터 설정 및 결과 매핑 해준다.   -->
+  <mappers>
+    <mapper resource="ggz/mybatis/mall.xml"/>
+    <mapper resource="ggz/mybatis/orderList.xml"/>
+    <mapper resource="ggz/mybatis/member.xml"/>
+    <mapper resource="ggz/mybatis/freeboard.xml"/>
+    <mapper resource="ggz/mybatis/comment.xml"/>
+    <mapper resource="ggz/mybatis/mtest.xml"/>
+    <mapper resource="ggz/mybatis/ctest.xml"/>
+  </mappers>
+</configuration>
+
+

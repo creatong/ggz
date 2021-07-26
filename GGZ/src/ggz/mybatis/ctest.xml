@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cTest"> <!-- namespace : 일종의 식별역할의 변수 -->
+	<select id="selectCIdx" resultType="Ctest" parameterType="int">
+		SELECT * FROM CTest WHERE idx=#{idx}
+	</select>
+	<select id="cntCIdx" resultType="int">
+		SELECT COUNT(*) FROM CTest
+	</select>
+</mapper>
+
+
+
+
+
+
+
+

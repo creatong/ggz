@@ -1,0 +1,37 @@
+.contents {
+    position: relative;
+    margin:auto;
+	margin-top: 180px;
+    border: 1px solid #333;
+    width:650px;
+    height:650px;
+    border-radius: 10px;
+    overflow:hidden;
+}
+.contents .score{
+background-color: #FFCE3D;
+    text-align: center;
+    padding: 20px;
+    margin:auto;
+    margin-top: 10px;
+    border: 2px solid #FCC360;
+    border-radius:  10px;
+    width:300px;
+    height:100px;
+    font-size: 20px;
+}
+.contents .score p{
+	font-family: 'Black Han Sans', sans-serif;	
+    text-align:center;
+    font-size: 30px;
+    line-height: 50px;
+}
+.contents .point p{
+    text-align:center;
+    font-size: 20px;
+    margin-top:50px;
+}
+ .contents .kakao{
+	margin-top:80px;
+
+}

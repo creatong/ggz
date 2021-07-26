@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member"> <!-- namespace : 일종의 식별역할의 변수 -->
+
+	<select id="selectAll" resultType="Member">
+	select * from member_j	
+	</select>
+	
+	<select resultType="Member" id="findId" parameterType="java.util.HashMap">
+		select * from member_j where name=#{name} and phone=#{phone} 
+	</select>
+	
+	<select resultType="Member" id="findPassword" parameterType="java.util.HashMap">
+		select * from member_j where email=#{email} and name=#{name} and phone=#{phone} 
+	</select>
+	
+	<!-- parameterType : 실행에 필요한 데이터의 타입 , resultType : 실행결과 데이터의 타입 -->
+	<select id="selectByMno" parameterType="int" resultType="Member">
+	select * from member_j where idx=#{idx}
+	</select> 
+	
+	<select resultType="Member" id="login" parameterType="java.util.HashMap">
+		select * from member_j where email=#{email} and password=#{password} 
+	</select>
+	
+	<select id="checkEmail" resultType="int" parameterType="String">
+		SELECT count(*) FROM member_j WHERE email=#{email}
+	</select>
+	<select resultType="int" id="checkPhone" parameterType="String">
+	SELECT count(*) FROM member_j WHERE phone=#{phone} 
+	</select>
+	<insert id="addMember" parameterType="Member" >
+			insert into member_j(idx,name,email,password,addr,birthday,phone) 
+			values (member_j_member_seq.NEXTVAL,#{name},#{email},#{password},#{addr},#{birthday}, #{phone})		
+	</insert>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE member_j SET name=#{name},password=#{password},addr=#{addr},phone=#{phone} WHERE idx=#{idx}
+	</update>
+	<update id="pmtUpdate" parameterType="Member">
+		UPDATE member_j SET phone=#{phone},addr=#{addr},point=#{point} WHERE idx=#{idx}
+	</update>
+	
+	<update id="changePassw" parameterType="java.util.HashMap">
+		UPDATE member_j SET PASSWORD=#{password} WHERE EMAIL = #{email}
+	</update>
+	<update id="updatePoint" parameterType="Member">
+        UPDATE member_j SET point=#{point} WHERE idx=#{idx}
+    </update>
+</mapper>
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mall"> 
+<!-- namespace : 일종의 식별역할의 변수 -->
+	<!-- 모두보기 -->
+	<select id="selectAll" parameterType="int" resultType="Mall">
+		select * from 
+	(select rownum R, T.* from
+		(select * from mall order by idx desc) T 
+) where R between #{startNo} and #{endNo}
+
+	</select>
+	<!-- 카테고리 별로보기 -->
+	<select id="selectCategory" parameterType="java.util.HashMap" resultType="Mall">
+		select * from 
+	(select rownum R, T.* from
+		(select * from mall where category=#{category} order by idx desc) T 
+		) where R between #{startNo} and #{endNo}
+	</select>
+
+	<!-- 제품 상세보기 -->
+	<select id="selectDetail" parameterType="int" resultType="Mall">
+		select * from mall where idx=#{idx}
+	</select>
+	<!-- 배송정보 용 멤버 셀렉트 -->
+	<select id="memberSelectOne" parameterType="int" resultType="Mall">
+		select idx, name, price, img_name from member_j where idx=#{idx}
+	</select>
+	<!-- 검색 셀렉트 -->
+	<select id="getList3" parameterType="Param"
+		resultType="Mall">
+		select * from
+		(select rownum r ,T.* from
+		(select * from mall 
+			   where name like '%'||#{findText}||'%'
+				order by idx desc) T
+		)
+		where r between #{startNo} and #{endNo}
+	</select>
+	<!-- 검색용 카운트 -->
+	<select id="searchCount" parameterType ="Param" resultType="int" >
+		SELECT count(*) FROM mall 
+				   where name like '%'||#{findText}||'%'
+	</select>
+	<!-- 몰 딜리트 -->
+	<delete id="deleteMall" parameterType="int">
+		delete from mall where idx=#{idx}
+	</delete>
+	<!-- 몰 업데이트 -->
+	<update id="updateMall" parameterType="Mall">
+		update mall set name=#{name} , price=#{price} , img_name=#{img_name} , category=#{category} , content=#{content} where idx=#{idx}
+	</update>
+	<!-- 결제완료시 멤버 포인트 차감 -->
+	<update id="updatePoint" parameterType="int">
+		update member set point=#{point} where idx=#{idx}
+	</update>
+	<insert id="insertMall">
+		INSERT INTO mall(idx, name, price, img_name, category , content) 
+		values(mall_idx_seq.nextval,#{name},#{price},#{img_name},#{category},#{content})
+	</insert>
+	<insert id="mallInsert" parameterType="java.util.HashMap">
+		INSERT INTO mall(idx, name,price, img_name, category,content) 
+		values(mall_idx_seq.nextval,#{name},#{price} ,#{img_name}, #{category},#{content})
+	</insert>
+		<select id="selectSearch" parameterType="String" resultType="Mall">
+		select * from
+		(select rownum R, T.* from
+			(select * from mall where img_name Like #{name} order by idx desc) T 
+			) where R between #{startNo} and #{endNo}
+		
+	</select>
+		<!-- 모두보기 총개수 : getCount -->
+	<select id="getCount" resultType="int">
+	select count(*) from Mall
+	</select>
+	<!-- 카테고리별 보기 -->
+	    <select id="getCategoryCount" parameterType="String" resultType="int">
+    select count(*) from Mall where category=#{category}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
